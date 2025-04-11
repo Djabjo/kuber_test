@@ -7,7 +7,6 @@ image:
 
 bot:
   name: "aiogram-bot"
-  token: "ваш-токен"
   webhookUrl: "ваш-url"
 
 resources:
