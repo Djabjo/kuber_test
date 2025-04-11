@@ -17,6 +17,12 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          env:
+            - name: TELEGRAM_BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secretName | default (include "my-bot.fullname" .) }}
+                  key: telegram-token
 {{- with .Values.nodeSelector }}
 nodeSelector:
   {{- toYaml . | nindent 4 }}

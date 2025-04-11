@@ -2,11 +2,12 @@ replicaCount: 1
 
 image:
   repository: djabjo/telegram-bot
-  tag: 1.2.0
+  tag: 1.2.1
   pullPolicy: Always
 
 bot:
   name: "aiogram-bot"
+  token: "6625246314:AAFdNnKN0fVnppTXTsIwE9RgBYD3ZbjqLO4"
   webhookUrl: "ваш-url"
 
 resources:
