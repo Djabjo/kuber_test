@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telegram-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: telegram-bot
+  template:
+    metadata:
+      labels:
+        app: telegram-bot
+    spec:
+      containers:
+      - name: bot
+        image: djabjo/telegram-bot:latest
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "200m"
+        securityContext:
+          allowPrivilegeEscalation: false
+        env:
+          - name: PG_HOST
+            value: "postgres-service"
+          - name: PG_PORT
+            value: "5432"
+          - name: PG_DB
+            value: "db_bot_biba"
+          - name: PG_USER
+            value: "kotov"
+          - name: PG_PASSWORD
+            value: "879124Fot@"
