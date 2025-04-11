@@ -6,7 +6,7 @@ image:
   pullPolicy: Always
 
 bot:
-  name: "my-bot"
+  name: "aiogram"
   token: "ваш-токен"
   webhookUrl: "ваш-url"
 
