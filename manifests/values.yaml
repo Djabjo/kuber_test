@@ -1,0 +1,25 @@
+replicaCount: 1
+
+image:
+  repository: djabjo/telegram-bot
+  tag: latest
+  pullPolicy: Always
+
+bot:
+  name: "my-bot"
+  token: "ваш-токен"
+  webhookUrl: "ваш-url"
+
+resources:
+  limits:
+    memory: "512Mi"
+    cpu: "200m"
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
