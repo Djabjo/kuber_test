@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: djabjo/telegram-bot
-  tag: latest
+  tag: 1.2.0
   pullPolicy: Always
 
 bot:
