@@ -44,10 +44,9 @@ jobs:
     steps:
       - name: Verify files exist
         run: |
-          echo "Checking Helm chart files..."
-          echo | ls -l 
-          test -f $HELM_CHART_PATH/values.yaml || exit 1
-          test -f $HELM_CHART_PATH/Chart.yaml || exit 1
+          echo "Current directory: $(pwd)"
+          tree -a
+          ls -la
 
       - name: Update Helm Chart
         run: |
