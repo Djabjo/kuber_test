@@ -2,12 +2,11 @@ replicaCount: 1
 
 image:
   repository: djabjo/telegram-bot
-  tag: 1.2.11
+  tag: 1.2.12
   pullPolicy: Always
 
 bot:
   name: "aiogram-bot"
-  bot:
   existingSecret: aiogram-bot-secret 
 
 
