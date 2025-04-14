@@ -35,4 +35,4 @@ jobs:
           platforms: linux/arm64
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:1.2.12
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:1.2.13
