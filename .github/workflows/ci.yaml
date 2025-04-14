@@ -50,7 +50,7 @@ jobs:
           fi
 
           sed -i "s|tag:.*|tag: ${{ github.sha }}|" "$HELM_CHART_PATH/values.yaml"
-          sed -i "s/version:.*/version: $(date +%Y%m%d.%H%M%S)/" "$HELM_CHART_PATH/Сhart.yaml"
+          sed -i "s/version:.*/version: $(date +%Y%m%d.%H%M%S)/" "$HELM_CHART_PATH/Chart.yaml"
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
