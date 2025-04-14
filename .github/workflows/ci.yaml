@@ -7,7 +7,7 @@ on:
 env:
   REGISTRY: docker.io
   IMAGE_NAME: djabjo/telegram-bot
-  HELM_CHART_PATH: "charts/aiogram-bot"
+  HELM_CHART_PATH: "./charts/aiogram-bot"
 
 jobs:
   build-and-push:
