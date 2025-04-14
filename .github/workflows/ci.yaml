@@ -7,7 +7,7 @@ on:
 env:
   REGISTRY: docker.io
   IMAGE_NAME: djabjo/telegram-bot
-  HELM_CHART_PATH: "charts/aiogram_bot"
+  HELM_CHART_PATH: "./charts/aiogram-bot"
 
 jobs:
   build-and-push:
@@ -34,10 +34,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: |
-            echo "Current directory: $(pwd)"
-            ls -la
-            ls -la charts/aiogram_bot/
+          tags: 
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
@@ -47,9 +44,14 @@ jobs:
     steps:
       - name: Update Helm Chart
         run: |
+          echo "Current directory: $(pwd)"
+          ls -la
+          
+          ls -la charts/aiogram_bot/
           sed -i "s|tag:.*|tag: ${{ github.sha }}|" "$HELM_CHART_PATH/values.yaml"
-          sed -i "s/version:.*/version: $(date +%Y%m%d.%H%M%S)/" "$HELM_CHART_PATH/Chart.yaml"
+          sed -i "s/version:.*/version: $(date +%Y%m%d.%H%M%S)/" "$HELM_CHART_PATH/Сhart.yaml"
 
+      - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "CI: Update image tag to ${{ github.sha }}"
