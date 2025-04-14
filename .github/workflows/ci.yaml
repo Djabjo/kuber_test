@@ -7,7 +7,7 @@ on:
 env:
   REGISTRY: docker.io
   IMAGE_NAME: djabjo/telegram-bot
-  HELM_CHART_PATH: /charts/aiogram_bot
+  HELM_CHART_PATH: "charts/aiogram-bot"
 
 jobs:
   build-and-push:
@@ -44,8 +44,8 @@ jobs:
     steps:
       - name: Update Helm Chart
         run: |
-          sed -i "s|tag:.*|tag: ${{ github.sha }}|" $HELM_CHART_PATH/values.yaml
-          sed -i "s/version:.*/version: $(date +%Y%m%d.%H%M%S)/" $HELM_CHART_PATH/Chart.yaml
+          sed -i "s|tag:.*|tag: ${{ github.sha }}|" "$HELM_CHART_PATH/values.yaml"
+          sed -i "s/version:.*/version: $(date +%Y%m%d.%H%M%S)/" "$HELM_CHART_PATH/Chart.yaml"
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
