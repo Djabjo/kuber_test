@@ -18,10 +18,10 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           env:
-            - name: TELEGRAM_BOT_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.bot.name | default (include "my-bot.fullname" .) }}
+          - name: TELEGRAM_BOT_TOKEN
+            valueFrom:
+              secretKeyRef:
+                  name: {{ .Values.bot.existingSecret }}
                   key: telegram-token
 {{- with .Values.nodeSelector }}
 nodeSelector:
