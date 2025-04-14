@@ -7,7 +7,7 @@ on:
 env:
   REGISTRY: docker.io
   IMAGE_NAME: djabjo/telegram-bot
-  HELM_CHART_PATH: "./charts/aiogram-bot"
+  HELM_CHART_PATH: "charts/aiogram-bot"
 
 jobs:
   build-push:
@@ -42,6 +42,13 @@ jobs:
     needs: build-push
     runs-on: ubuntu-latest
     steps:
+      - name: Verify files exist
+        run: |
+          echo "Checking Helm chart files..."
+          ls -la $HELM_CHART_PATH
+          test -f $HELM_CHART_PATH/values.yaml || exit 1
+          test -f $HELM_CHART_PATH/Chart.yaml || exit 1
+          
       - name: Update Helm Chart
         run: |
           sed -i "s|tag:.*|tag: ${{ github.sha }}|" $HELM_CHART_PATH/values.yaml
