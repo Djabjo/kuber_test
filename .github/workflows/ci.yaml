@@ -35,33 +35,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-
-  deploy:
-    needs: build-push
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "CI: Update image tag to ${{ github.sha }}"
-          branch: main  # Явное указание ветки
-          file_pattern: "$HELM_CHART_PATH/*"  # Путь к измененным файлам
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-
-      - name: Update Helm Chart
-        run: |
-          sed -i "s|tag:.*|tag: ${{ github.sha }}|" $HELM_CHART_PATH/values.yaml
-          sed -i "s/version:.*/version: $(date +%Y%m%d.%H%M%S)/" $HELM_CHART_PATH/Chart.yaml
-
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "CI: Update image tag to ${{ github.sha }}"
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:1.2.3
