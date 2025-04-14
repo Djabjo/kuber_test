@@ -1,7 +1,6 @@
 FROM python:3.9-slim
 
 WORKDIR /app
-ENV version=1.2.0 
 
 RUN apt-get update && apt-get install -y libpq-dev gcc
 RUN /usr/local/bin/python -m pip install --upgrade pip
