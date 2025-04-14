@@ -6,8 +6,8 @@ image:
   pullPolicy: Always
 
 bot:
-  name: "aiogram-bot"
-  token: ${{ secrets.TELEGRAM_TOKEN }}
+  name: "aiogram_bot"
+  token: ${TELEGRAM_TOKEN}
 
 
 resources:
