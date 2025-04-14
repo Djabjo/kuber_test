@@ -45,7 +45,7 @@ jobs:
       - name: Verify files exist
         run: |
           echo "Checking Helm chart files..."
-          ll -l $HELM_CHART_PATH
+          ls -f 
           test -f $HELM_CHART_PATH/values.yaml || exit 1
           test -f $HELM_CHART_PATH/Chart.yaml || exit 1
 
