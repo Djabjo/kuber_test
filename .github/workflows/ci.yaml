@@ -7,7 +7,7 @@ on:
 env:
   REGISTRY: docker.io
   IMAGE_NAME: djabjo/telegram-bot
-  HELM_CHART_PATH: "./charts/aiogram-bot"
+  HELM_CHART_PATH: "charts/aiogram_bot"
 
 jobs:
   build-and-push:
@@ -35,7 +35,9 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ls -la charts/aiogram-bot/
+            echo "Current directory: $(pwd)"
+            ls -la
+            ls -la charts/aiogram_bot/
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
