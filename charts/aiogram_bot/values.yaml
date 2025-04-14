@@ -7,7 +7,7 @@ image:
 
 bot:
   name: "aiogram_bot"
-  token: NjYyNTI0NjMxNDpBQUZkTm5LTjBmVm5wcFRYVHNJd0U5UmdCWUQzWmJqcUxPNA==  
+  token: "NjYyNTI0NjMxNDpBQUZkTm5LTjBmVm5wcFRYVHNJd0U5UmdCWUQzWmJqcUxPNA== "
 
 
 resources:
