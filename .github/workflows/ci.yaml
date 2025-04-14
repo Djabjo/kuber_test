@@ -42,11 +42,19 @@ jobs:
     needs: build-push
     runs-on: ubuntu-latest
     steps:
-      - name: Verify files exist
-        run: |
-          echo "Current directory: $(pwd)"
-          tree -a
-          ls -la
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "CI: Update image tag to ${{ github.sha }}"
+          branch: main  # Явное указание ветки
+          file_pattern: "$HELM_CHART_PATH/*"  # Путь к измененным файлам
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
 
       - name: Update Helm Chart
         run: |
