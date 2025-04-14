@@ -6,7 +6,7 @@ image:
   pullPolicy: Always
 
 bot:
-  name: "aiogram_bot"
+  name: "aiogram-bot"
   token: "4oCcNjYyNTI0NjMxNDpBQUZkTm5LTjBmVm5wcFRYVHNJd0U5UmdCWUQzWmJqcUxPNOKAnQo="
 
 
