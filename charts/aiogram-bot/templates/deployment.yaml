@@ -45,4 +45,3 @@ spec:
 nodeSelector:
   {{- toYaml . | nindent 4 }}
 {{- end }}
-SecretPSQL
