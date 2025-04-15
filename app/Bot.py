@@ -6,7 +6,6 @@ import random
 import os
 import string
 
-from datetime import datetime
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
@@ -26,9 +25,8 @@ dp = Dispatcher()
 router = Router()
 dp.include_router(router)
 
-#### надо чинить 
+
 async def create_pool():
-    # Получаем параметры подключения из переменных окружения
     host = '10.42.0.72'
     port = 5432
     database = os.getenv("POSTGRES_DB").strip()
@@ -48,12 +46,9 @@ async def create_pool():
 
 
 async def generate_random_message():
-    # Генерируем случайное сообщение
     random_text = ''.join(random.choices(string.ascii_letters + string.digits, k=20))
     return random_text
-
-
-
+                            
 @router.message(Command("push"))
 async def cmd_push(message: Message):
     try:        
@@ -70,7 +65,7 @@ async def cmd_push(message: Message):
             # Получаем количество записей
             
             count = await connection.fetchval('SELECT COUNT(*) FROM messages')
-            await message.answer("✅ Запись добавлина в БД. Всего записей: {count}")
+            await message.answer(f"✅ Запись добавлина в БД. Всего записей: {count}")
 
     except asyncpg.PostgresError as e:
         logging.error(f"Database error: {e}")
@@ -79,11 +74,6 @@ async def cmd_push(message: Message):
         logging.error(f"General error: {e}")
         await message.answer("❌ Неизвестная ошибка")
 
-
-
-
-
-        
 #### надо чинить 
 
 async def main() -> None:
