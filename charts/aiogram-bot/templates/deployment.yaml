@@ -21,7 +21,7 @@ spec:
           - name: TELEGRAM_BOT_TOKEN
             valueFrom:
               secretKeyRef:
-                  name: {{ .Values.bot.existingSecret }}
+                  name: {{ .Values.bot.existingSecret }}  
                   key: telegram-token
 {{- with .Values.nodeSelector }}
 nodeSelector:
