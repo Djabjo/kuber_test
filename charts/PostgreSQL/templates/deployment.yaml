@@ -40,5 +40,5 @@ spec:
                   key: POSTGRES_USER
       - name: data
         persistentVolumeClaim:
-          claimName: {{ .Values.postgresql.persistence.existingClaim | default (include "postgresql-chart.fullname" .) }}
+          claimName: {{ .Values.postgresql.persistence.existingClaim | default (include "PostgreSQL.fullname" .) }}
 
