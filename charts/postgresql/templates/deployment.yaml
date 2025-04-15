@@ -15,7 +15,7 @@ spec:
         {{- include "my-postgres.labels" . | nindent 8 }}
     spec:
       containers:
-      - name: postgresql  
+      - name: postgresql
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
@@ -24,18 +24,18 @@ spec:
           - name: POSTGRES_DB
             valueFrom:
               secretKeyRef:
-                  name: {{ .Values.postgresql.auth.secretName }} 
-                  key: POSTGRES_DB
+                name: {{ .Values.postgresql.auth.secretName }}
+                key: POSTGRES_DB
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
-                  name: {{ .Values.postgresql.auth.secretName }} 
-                  key: POSTGRES_PASSWORD
+                name: {{ .Values.postgresql.auth.secretName }}
+                key: POSTGRES_PASSWORD
           - name: POSTGRES_USER
             valueFrom:
               secretKeyRef:
-                  name: {{ .Values.postgresql.auth.secretName }} 
-                  key: POSTGRES_USER
+                name: {{ .Values.postgresql.auth.secretName }}
+                key: POSTGRES_USER
         volumeMounts:
         - name: postgresql-data
           mountPath: /var/lib/postgresql/data

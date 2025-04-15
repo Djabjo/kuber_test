@@ -6,7 +6,7 @@ image:
 
 postgresql:
   auth:
-    SecretPSQL: "postgres-secret"
+    secretName: "postgres-secret"
   persistence:
     enabled: true
     size: 2Gi
