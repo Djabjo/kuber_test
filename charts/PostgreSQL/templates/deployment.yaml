@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "postgresql-chart.fullname" . }}
+  name: {{ include "PostgreSQL.fullname" . }}
   labels:
-    {{- include "postgresql-chart.labels" . | nindent 4 }}
+    {{- include "PostgreSQL.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "postgresql-chart.labels" . | nindent 6 }}
+      {{- include "PostgreSQL.labels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "postgresql-chart.labels" . | nindent 8 }}
+        {{- include "PostgreSQL.labels" . | nindent 8 }}
     spec:
       containers:
       - name: {{ .Chart.Name }}
