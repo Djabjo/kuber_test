@@ -15,7 +15,7 @@ spec:
         {{- include "PostgreSQL.labels" . | nindent 8 }}
     spec:
       containers:
-      - name: {{ .Chart.Name }}
+      - name: postgresql
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
