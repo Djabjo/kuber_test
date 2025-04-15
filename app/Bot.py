@@ -30,8 +30,8 @@ async def create_pool():
     host = '10.42.0.72'
     port = 5432
     database = os.getenv("POSTGRES_DB").strip()
-    user = os.getenv("POSTGRES_PASSWORD").strip()
-    password = os.getenv("POSTGRES_USER").strip()
+    user = os.getenv("POSTGRES_USER").strip()
+    password = os.getenv("POSTGRES_PASSWORD").strip()
     
     pool = await asyncpg.create_pool(
         host=host,
