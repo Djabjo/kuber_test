@@ -8,7 +8,7 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "Ppostgresql.labels" . | nindent 6 }}
+      {{- include "postgresql.labels" . | nindent 6 }}
   template:
     metadata:
       labels:
