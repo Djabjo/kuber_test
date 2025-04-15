@@ -27,7 +27,7 @@ dp.include_router(router)
 
 
 async def create_pool():
-    host = '10.42.0.72'
+    host = 'postgres-service'
     port = 5432
     database = os.getenv("POSTGRES_DB").strip()
     user = os.getenv("POSTGRES_USER").strip()
