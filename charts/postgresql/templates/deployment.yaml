@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "postgresql.fullname" . }}
+  name: {{ include "postgresql.fullname" . | lower | trunc 63 | trimSuffix "-" }}
   labels:
     {{- include "postgresql.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "postgresql.labels" . | nindent 6 }}
+      {{- include "postgresql.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "postgresql.labels" . | nindent 8 }}
+        {{- include "postgresql.selectorLabels" . | nindent 8 }}
     spec:
       containers:
-      - name: postgresql-db
+      - name: postgresql  # Фиксированное имя в lowercase
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
@@ -24,22 +24,22 @@ spec:
           - name: POSTGRES_DB
             valueFrom:
               secretKeyRef:
-                  name: {{ .Values.postgresql.auth.SecretPSQL }} 
+                  name: {{ .Values.postgresql.auth.secretName }} 
                   key: POSTGRES_DB
-          
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
-                  name: {{ .Values.postgresql.auth.SecretPSQL }} 
+                  name: {{ .Values.postgresql.auth.secretName }} 
                   key: POSTGRES_PASSWORD
-          
           - name: POSTGRES_USER
             valueFrom:
               secretKeyRef:
-                  name: {{ .Values.postgresql.auth.SecretPSQL }} 
+                  name: {{ .Values.postgresql.auth.secretName }} 
                   key: POSTGRES_USER
-    volumes:              
-      - name: data
+        volumeMounts:
+        - name: postgresql-data
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: postgresql-data
         persistentVolumeClaim:
-          claimName: {{ .Values.postgresql.persistence.existingClaim | default (include "postgresql.fullname" .) }}
-
+          claimName: {{ .Values.postgresql.persistence.existingClaim | default (include "postgresql.fullname" .) | lower }}
