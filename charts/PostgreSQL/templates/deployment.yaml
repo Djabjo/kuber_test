@@ -15,7 +15,7 @@ spec:
         {{- include "PostgreSQL.labels" . | nindent 8 }}
     spec:
       containers:
-      - name: postgresql
+      - name: postgresql-db
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
