@@ -15,7 +15,7 @@ spec:
         {{- include "postgresql.selectorLabels" . | nindent 8 }}
     spec:
       containers:
-      - name: postgresql  # Фиксированное имя в lowercase
+      - name: postgresql  
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
