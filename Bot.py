@@ -16,7 +16,8 @@ from aiogram import Dispatcher, Router
 
 from asyncpg.pool import Pool
 
-token = os.getenv("TELEGRAM_BOT_TOKEN")
+token = os.getenv("TELEGRAM_BOT_TOKEN").strip()
+
 TOKEN = token
 
 dp = Dispatcher()
