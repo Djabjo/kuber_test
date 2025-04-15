@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "postgresql-chart.fullname" . }}
+  labels:
+    {{- include "postgresql-chart.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "postgresql-chart.labels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "postgresql-chart.labels" . | nindent 8 }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 5432
+        env:
+          - name: POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                  name: {{ .Values.postgresql.auth.SecretPSQL }} 
+                  key: POSTGRES_DB
+          
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                  name: {{ .Values.postgresql.auth.SecretPSQL }} 
+                  key: POSTGRES_PASSWORD
+          
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                  name: {{ .Values.postgresql.auth.SecretPSQL }} 
+                  key: POSTGRES_USER
+      - name: data
+        persistentVolumeClaim:
+          claimName: {{ .Values.postgresql.persistence.existingClaim | default (include "postgresql-chart.fullname" .) }}
+
