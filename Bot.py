@@ -9,22 +9,22 @@ from datetime import datetime
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
-
 from aiogram.types import Message
 from aiogram.filters import Command
 from aiogram import Dispatcher, Router
 
 from asyncpg.pool import Pool
 
-token = os.getenv("TELEGRAM_BOT_TOKEN").strip()
 
+
+token = os.getenv("TELEGRAM_BOT_TOKEN").strip()
 TOKEN = token
 
 dp = Dispatcher()
 router = Router()
 dp.include_router(router)
 
-
+#### надо чинить 
 DB_CONFIG = {
     "host": "postgres-service",
     "port": 5432,
@@ -32,8 +32,6 @@ DB_CONFIG = {
     "user": "kotov",
     "password": "8sdfsdft@"
 }
-
-
 pool: Pool = None
 
 async def create_pool():
@@ -63,14 +61,7 @@ async def cmd_push(message: Message):
     except Exception as e:
         logging.error(f"General error: {e}")
         await message.answer("❌ Неизвестная ошибка")
-
-
-@router.message(Command("start"))  
-async def cmd_input(message: Message):
-    await message.answer(
-        f"Раздел отвечает за работу с базой данных\n" 
-        f"Выберите вариант для продолжения"
-        )
+#### надо чинить 
 
 async def main() -> None:
     bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
