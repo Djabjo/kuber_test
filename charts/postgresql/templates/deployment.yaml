@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "PostgreSQL.fullname" . }}
+  name: {{ include "postgresql.fullname" . }}
   labels:
-    {{- include "PostgreSQL.labels" . | nindent 4 }}
+    {{- include "postgresql.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "PostgreSQL.labels" . | nindent 6 }}
+      {{- include "Ppostgresql.labels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "PostgreSQL.labels" . | nindent 8 }}
+        {{- include "postgresql.labels" . | nindent 8 }}
     spec:
       containers:
       - name: postgresql-db
@@ -41,5 +41,5 @@ spec:
     volumes:              
       - name: data
         persistentVolumeClaim:
-          claimName: {{ .Values.postgresql.persistence.existingClaim | default (include "PostgreSQL.fullname" .) }}
+          claimName: {{ .Values.postgresql.persistence.existingClaim | default (include "postgresql.fullname" .) }}
 
