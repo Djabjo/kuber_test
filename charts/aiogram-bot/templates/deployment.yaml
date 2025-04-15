@@ -23,7 +23,26 @@ spec:
               secretKeyRef:
                   name: {{ .Values.bot.existingSecret }} 
                   key: telegram-token
+          
+          - name: POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                  name: {{ .Values.bot.SecretPSQL }} 
+                  key: POSTGRES_DB
+          
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                  name: {{ .Values.bot.SecretPSQL }} 
+                  key: POSTGRES_PASSWORD
+          
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                  name: {{ .Values.bot.SecretPSQL }} 
+                  key: POSTGRES_USER
 {{- with .Values.nodeSelector }}
 nodeSelector:
   {{- toYaml . | nindent 4 }}
 {{- end }}
+SecretPSQL

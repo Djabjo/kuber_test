@@ -2,12 +2,13 @@ replicaCount: 1
 
 image:
   repository: djabjo/telegram-bot
-  tag: 0.0.19
+  tag: 0.0.22
   pullPolicy: Always
 
 bot:
   name: "aiogram-bot"
   existingSecret: "aiogram-bot-secret"
+  SecretPSQL: "postgres-secret"
 
 
 resources:
