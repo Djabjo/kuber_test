@@ -38,6 +38,7 @@ spec:
               secretKeyRef:
                   name: {{ .Values.postgresql.auth.SecretPSQL }} 
                   key: POSTGRES_USER
+    volumes:              
       - name: data
         persistentVolumeClaim:
           claimName: {{ .Values.postgresql.persistence.existingClaim | default (include "PostgreSQL.fullname" .) }}
