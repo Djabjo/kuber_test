@@ -7,7 +7,7 @@ image:
 
 bot:
   name: "aiogram-bot"
-  existingSecret: aiogram-bot-secret 
+  existingSecret: "aiogram-bot-secret"
 
 
 resources:
