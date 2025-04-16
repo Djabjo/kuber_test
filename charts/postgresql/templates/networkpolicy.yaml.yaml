@@ -8,10 +8,11 @@ metadata:
     argocd.argoproj.io/compare-options: IgnoreExtraneous 
 spec:
   podSelector:
-    {{- include "my-postgres.selectorLabels" . | nindent 4 }}
+
   policyTypes:
   - Ingress
   ingress:
   - ports:
-    - port: 5432
-      protocol: TCP
+    - protocol: TCP 
+      port: 5432
+
