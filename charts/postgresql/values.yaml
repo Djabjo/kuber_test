@@ -9,10 +9,9 @@ postgresql:
     secretName: "postgres-secret"
   persistence:
     enabled: true
-    existingClaim: ""
-    size: 2Gi
-    accessMode: ReadWriteOnce
-    storageClass: "standard"
+    size: 1Gi
+    storageClass: "standard"  
+    existingClaim: "" 
   service:
     type: ClusterIP
     port: 5432
@@ -24,7 +23,7 @@ resources:
   requests:
     memory: "256Mi"
     cpu: "100m"
-    
+
 autoscaling:
   enabled: false
   minReplicas: 1
