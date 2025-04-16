@@ -3,10 +3,8 @@ kind: NetworkPolicy
 metadata:
   name: postgresql-postgres
 spec:
-  podSelector:
-    matchLabels:
-      app: postgresql
-  ingress:
-  - from: []
-    ports:
-    - port: 5432
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi 
