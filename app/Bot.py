@@ -40,7 +40,9 @@ async def create_pool():
         user=user,
         password=password,
         min_size=1,
-        max_size=20
+        max_size=20,
+        max_queries=100, 
+        max_inactive_connection_lifetime=300 
     )
     return pool
 
