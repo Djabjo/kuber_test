@@ -16,4 +16,5 @@ spec:
     - port: 5432
       protocol: TCP
     from:
-    - namespaceSelector: {} 
+    - namespaceSelector: 
+        matchLabels: {}
