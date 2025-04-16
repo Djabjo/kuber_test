@@ -52,20 +52,20 @@ async def generate_random_message():
 @router.message(Command("push"))
 async def cmd_push(message: Message):
     try:        
-        # Генерируем случайные данные
-        message_text = await generate_random_message()
-        pool = await create_pool()
-        # Выполняем вставку
-        async with pool.acquire() as connection:
-            await connection.execute('''
-                INSERT INTO messages (text)
-                VALUES ($1)
-            ''', message_text)
-            
-            # Получаем количество записей
-            
-            count = await connection.fetchval('SELECT COUNT(*) FROM messages')
-            await message.answer(f"✅ Запись добавлина в БД. Всего записей: {count}")
+        for i in range(200000):
+            message_text = await generate_random_message()
+            pool = await create_pool()
+            # Выполняем вставку
+            async with pool.acquire() as connection:
+                await connection.execute('''
+                    INSERT INTO messages (text)
+                    VALUES ($1)
+                ''', message_text)
+                
+                # Получаем количество записей
+                
+                count = await connection.fetchval('SELECT COUNT(*) FROM messages')
+                await message.answer(f"✅ Запись добавлина в БД. Всего записей: {count}")
 
     except asyncpg.PostgresError as e:
         logging.error(f"Database error: {e}")
