@@ -5,17 +5,12 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app: postgresql  # Должно совпадать с лейблами подов PostgreSQL
+      app: postgresql  # Should match the labels of the PostgreSQL pods
   policyTypes:
   - Ingress
   ingress:
-  - from: []
+  - from:
+    - podSelector: {}  # Allow ingress from all pods; customize as needed
     ports:
     - port: 5432
       protocol: TCP
-
-  accessModes:
-     - ReadWriteOnce
-   resources:
-     requests:
-       storage: 1Gi 
