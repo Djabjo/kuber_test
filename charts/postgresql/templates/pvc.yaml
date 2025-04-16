@@ -1,10 +1,12 @@
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: NetworkPolicy
 metadata:
   name: postgresql-postgres
 spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi # Adjust size as nec
+  podSelector:
+    matchLabels:
+      app: postgresql
+  ingress:
+  - from: []
+    ports:
+    - port: 5432
