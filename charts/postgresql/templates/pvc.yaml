@@ -13,3 +13,9 @@ spec:
     ports:
     - port: 5432
       protocol: TCP
+
+  accessModes:
+     - ReadWriteOnce
+   resources:
+     requests:
+       storage: 1Gi 
