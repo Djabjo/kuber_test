@@ -1,16 +1,11 @@
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
+apiVersion: v1
+kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Values.postgresql.persistence.existingClaim | default (include "my-postgres.fullname" .) | lower }}
+  name: 
+    {{- include "my-postgres.labels" . | nindent 4 }}
 spec:
-  podSelector:
-    matchLabels:
-      app: postgresql  # Should match the labels of the PostgreSQL pods
-  policyTypes:
-  - Ingress
-  ingress:
-  - from:
-    - podSelector: {}  # Allow ingress from all pods; customize as needed
-    ports:
-    - port: 5432
-      protocol: TCP
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
