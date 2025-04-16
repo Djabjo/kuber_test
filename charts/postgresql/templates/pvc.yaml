@@ -10,4 +10,4 @@ spec:
   resources:
     requests:
       storage: {{ .Values.postgresql.persistence.size | default "1Gi" }}
-  storageClassName: {{ .Values.postgresql.persistence.storageClass | quote }}
+  storageClassName: local-path
