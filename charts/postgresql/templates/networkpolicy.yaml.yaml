@@ -1,17 +1,17 @@
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: {{ include "my-postgres.fullname" . | lower | trunc 63 | trimSuffix "-" }}-np
-  labels:
-    {{- include "my-postgres.labels" . | nindent 4 }}
-spec:
-  podSelector:
-    {{- include "my-postgres.selectorLabels" . | nindent 4 }}
-  policyTypes:
-  - Ingress
-  ingress:
-  - ports:
-    - port: 5432
-      protocol: TCP
-    from:
-    - namespaceSelector: {} 
+# apiVersion: networking.k8s.io/v1
+# kind: NetworkPolicy
+# metadata:
+#   name: {{ include "my-postgres.fullname" . | lower | trunc 63 | trimSuffix "-" }}-np
+#   labels:
+#     {{- include "my-postgres.labels" . | nindent 4 }}
+# spec:
+#   podSelector:
+#     {{- include "my-postgres.selectorLabels" . | nindent 4 }}
+#   policyTypes:
+#   - Ingress
+#   ingress:
+#   - ports:
+#     - port: 5432
+#       protocol: TCP
+#     from:
+#     - namespaceSelector: {} 

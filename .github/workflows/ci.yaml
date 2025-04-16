@@ -3,6 +3,8 @@ name: Build and Deploy
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'app/**'  
 
 env:
   REGISTRY: docker.io
@@ -34,4 +36,4 @@ jobs:
           platforms: linux/arm64
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:0.0.30
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:0.0.31
