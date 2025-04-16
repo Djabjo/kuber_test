@@ -15,7 +15,7 @@ spec:
         {{- include "my-postgres.labels" . | nindent 8 }}
     spec:
       containers:
-      - name: {{ include "my-postgres.fullname" . | lower | trunc 63 | trimSuffix "-" }}
+      - name: postgresql
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
