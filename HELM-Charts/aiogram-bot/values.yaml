@@ -15,7 +15,7 @@ postgresql:
   service:
     type: ClusterIP
     port: 5432
-    
+
 imagepsql:
   repository: postgres
   tag: "13"
@@ -23,7 +23,6 @@ imagepsql:
 
 bot:
   name: "aiogram-bot"
-  existingSecret: "aiogram-bot-secret"
   SecretPSQL: "postgres-secret"
 
 resources:
