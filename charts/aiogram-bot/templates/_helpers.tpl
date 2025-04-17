@@ -16,6 +16,6 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 
 {{/* Selector labels */}}
 {{- define "my-postgres.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "my-postgres.fullname" . }}
+app.kubernetes.io/name: {{ include "my-bot.fullname" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
