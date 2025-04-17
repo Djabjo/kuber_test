@@ -10,8 +10,7 @@ postgresql:
   persistence:
     enabled: true
     size: 2Gi
-    storageClass: "local-path"  
-    existingClaim: "" 
+    storageClass: "local-path"
   service:
     type: ClusterIP
     port: 5432
