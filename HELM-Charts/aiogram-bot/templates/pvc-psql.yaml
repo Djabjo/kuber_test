@@ -9,5 +9,5 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .Values.postgresql.persistence.size | default "1Gi" }}
+      storage: {{ .Values.postgresql.persistence.size | default "5Gi" }}
   storageClassName: local-path
