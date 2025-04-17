@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "my-postgres.fullname" . | lower | trunc 63 | trimSuffix "-" }}-np
+  labels:
+    {{- include "my-postgres.labels" . | nindent 4 }}
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous 
+spec:
+  podSelector:
+  policyTypes:
+  - Ingress
+  ingress:
+  - ports:
+    - protocol: TCP 
+      port: 5432
+
