@@ -4,6 +4,18 @@ imagebot:
   tag: 0.0.32
   pullPolicy: Always
 
+postgresql:
+  auth:
+    secretName: "postgres-secret"
+  persistence:
+    enabled: true
+    size: 1Gi
+    storageClass: "local-path"  
+    existingClaim: "" 
+  service:
+    type: ClusterIP
+    port: 5432
+    
 imagepsql:
   repository: postgres
   tag: "13"
@@ -21,6 +33,11 @@ resources:
   requests:
     memory: "256Mi"
     cpu: "100m"
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 2
 
 nodeSelector: {}
 
