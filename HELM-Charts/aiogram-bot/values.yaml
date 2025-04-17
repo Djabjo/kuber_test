@@ -9,7 +9,7 @@ postgresql:
     secretName: "postgres-secret"
   persistence:
     enabled: true
-    size: 1Gi
+    size: 2Gi
     storageClass: "local-path"  
     existingClaim: "" 
   service:

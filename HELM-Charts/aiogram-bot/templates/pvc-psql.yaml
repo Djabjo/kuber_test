@@ -7,7 +7,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: {{ .Values.postgresql.persistence.storageClass | quote }}
   resources:
     requests:
-      storage: {{ .Values.postgresql.persistence.size | default "5Gi" }}
-  storageClassName: local-path
+      storage: {{ .Values.postgresql.persistence.size | quote }}
