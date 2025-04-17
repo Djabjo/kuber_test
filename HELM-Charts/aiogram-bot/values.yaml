@@ -22,7 +22,7 @@ imagepsql:
   pullPolicy: Always
 
 bot:
-  name: "aiogram-bot-secret"
+  SecretTOKEN: "aiogram-bot-secret"
   SecretPSQL: "postgres-secret"
 
 resources:
