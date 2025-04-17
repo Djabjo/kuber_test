@@ -1,6 +1,6 @@
 {{- define "my-bot.fullname" -}}
 {{- $root := . -}}
-{{- printf "%s-%s" $.Release.Name $root.Values.bot.name | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-my-bot" $.Release.Name $root.Values.bot.name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/* Common labels */}}
