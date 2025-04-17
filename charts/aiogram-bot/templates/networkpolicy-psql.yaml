@@ -1,9 +1,9 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: {{ include "my-postgres.fullname" . | lower | trunc 63 | trimSuffix "-" }}-np
+  name: {{ include "my-bot.fullname" . | lower | trunc 63 | trimSuffix "-" }}-np
   labels:
-    {{- include "my-postgres.labels" . | nindent 4 }}
+    {{- include "my-bot.labels" . | nindent 4 }}
   annotations:
     argocd.argoproj.io/compare-options: IgnoreExtraneous 
 spec:

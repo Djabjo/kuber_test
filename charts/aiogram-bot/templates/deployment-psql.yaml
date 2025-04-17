@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "my-postgres.fullname" . | lower | trunc 63 | trimSuffix "-" }}
+  name: {{ include "my-bot.fullname" . | lower | trunc 63 | trimSuffix "-" }}
   labels:
-    {{- include "my-postgres.labels" . | nindent 4 }}
+    {{- include "my-bot.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "my-postgres.labels" . | nindent 6 }}
+      {{- include "my-bot.labels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "my-postgres.labels" . | nindent 8 }}
+        {{- include "my-bot.labels" . | nindent 8 }}
     spec:
       containers:
       - name: postgresql
@@ -42,4 +42,4 @@ spec:
       volumes:
       - name: postgresql-data
         persistentVolumeClaim:
-          claimName: {{ include "my-postgres.fullname" . | lower }}
+          claimName: {{ include "my-bot.fullname" . | lower }}
