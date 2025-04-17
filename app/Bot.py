@@ -39,8 +39,8 @@ async def create_pool():
         password=password,
         min_size=1,
         max_size=20,
-        max_queries=100, 
-        max_inactive_connection_lifetime=300 
+        max_queries=101, 
+        max_inactive_connection_lifetime=20
     )
     return pool
 
@@ -52,7 +52,7 @@ async def generate_random_message():
 @router.message(Command("push"))
 async def cmd_push(message: Message):
     try:        
-        for i in range(200000):
+        for i in range(100):
             message_text = await generate_random_message()
             pool = await create_pool()
             # Выполняем вставку
@@ -65,7 +65,7 @@ async def cmd_push(message: Message):
                 # Получаем количество записей
                 
                 count = await connection.fetchval('SELECT COUNT(*) FROM messages')
-                await message.answer(f"✅ Запись добавлина в БД. Всего записей: {count}")
+        await message.answer(f"✅ Запись добавлина в БД. Всего записей: {count}")
 
     except asyncpg.PostgresError as e:
         logging.error(f"Database error: {e}")
