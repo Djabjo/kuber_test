@@ -29,7 +29,7 @@ postgresql:
 
 resources:
   limits:
-    memory: "524"
+    memory: "524Mi"
     cpu: "200m"
   requests:
     memory: "256Mi"

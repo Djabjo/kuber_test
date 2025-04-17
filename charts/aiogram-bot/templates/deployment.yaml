@@ -15,6 +15,7 @@ spec:
         {{- include "my-bot.labels" . | nindent 8 }}
     spec:
       containers:
+#bot      
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           env:
@@ -41,6 +42,35 @@ spec:
               secretKeyRef:
                   name: {{ .Values.bot.SecretPSQL }} 
                   key: POSTGRES_USER
+#psql         
+         - name: postgresql
+        image: "{{ .Values.imagepsql.repository }}:{{ .Values.imagepsql.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 5432
+        env:
+          - name: POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.postgresql.auth.secretName }}
+                key: POSTGRES_DB
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.postgresql.auth.secretName }}
+                key: POSTGRES_PASSWORD
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.postgresql.auth.secretName }}
+                key: POSTGRES_USER
+        volumeMounts:
+        - name: postgresql-data
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: postgresql-data
+        persistentVolumeClaim:
+          claimName: {{ include "my-bot.fullname" . | lower }}          
 {{- with .Values.nodeSelector }}
 nodeSelector:
   {{- toYaml . | nindent 4 }}
