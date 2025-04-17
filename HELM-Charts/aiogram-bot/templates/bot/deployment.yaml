@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.imagebot.repository }}:{{ .Values.imagebot.tag }}"
           env:
           - name: TELEGRAM_BOT_TOKEN
             valueFrom:

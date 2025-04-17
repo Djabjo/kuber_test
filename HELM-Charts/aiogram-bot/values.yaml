@@ -1,6 +1,5 @@
-replicaCount: 2
-
-image:
+replicaCount: 1
+imagebot:
   repository: djabjo/telegram-bot
   tag: 0.0.32
   pullPolicy: Always
@@ -14,18 +13,6 @@ bot:
   name: "aiogram-bot"
   existingSecret: "aiogram-bot-secret"
   SecretPSQL: "postgres-secret"
-
-postgresql:
-  auth:
-    secretName: "postgres-secret"
-  persistence:
-    enabled: true
-    size: 1Gi
-    storageClass: "local-path"  
-    existingClaim: "" 
-  service:
-    type: ClusterIP
-    port: 5432
 
 resources:
   limits:
