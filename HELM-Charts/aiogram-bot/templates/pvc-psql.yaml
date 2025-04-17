@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "my-bot.fullname" . | lower | trunc 63 | trimSuffix "-" }}
+  name: {{ include "my-postgres.fullname" . | lower | trunc 63 | trimSuffix "-" }}
   labels:
-    {{- include "my-bot.labels" . | nindent 4 }}
+    {{- include "my-postgres.labels" . | nindent 4 }}
 spec:
   accessModes:
     - ReadWriteOnce
