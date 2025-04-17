@@ -13,3 +13,9 @@ app.kubernetes.io/version: {{ .Chart.Version }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 {{- define "my-bot.chart" -}}{{ .Chart.Name }}{{- end -}}
+
+{{/* Selector labels */}}
+{{- define "my-bot.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "my-bot.fullname" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end -}}

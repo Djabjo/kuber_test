@@ -5,15 +5,31 @@ image:
   tag: 0.0.32
   pullPolicy: Always
 
+imagepsql:
+  repository: postgres
+  tag: "13"
+  pullPolicy: Always
+
 bot:
   name: "aiogram-bot"
   existingSecret: "aiogram-bot-secret"
   SecretPSQL: "postgres-secret"
 
+postgresql:
+  auth:
+    secretName: "postgres-secret"
+  persistence:
+    enabled: true
+    size: 1Gi
+    storageClass: "local-path"  
+    existingClaim: "" 
+  service:
+    type: ClusterIP
+    port: 5432
 
 resources:
   limits:
-    memory: "1024Mi"
+    memory: "524"
     cpu: "200m"
   requests:
     memory: "256Mi"
