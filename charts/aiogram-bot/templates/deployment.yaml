@@ -70,7 +70,7 @@ spec:
         volumes:
         - name: postgresql-data
           persistentVolumeClaim:
-            claimName: {{ include "my-bot.fullname" . | lower }}-pvc           
+            claimName: {{ include "my-bot.fullname" . }-pvc           
 {{- with .Values.nodeSelector }}
 nodeSelector:
   {{- toYaml . | nindent 4 }}
