@@ -7,7 +7,8 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: tg-bot-postgres
+  storageClassName: {{ .Values.postgresql.persistence.storageClass | quote }}
   resources:
-    requests:
+    requests:    storageClass
       storage: {{ .Values.postgresql.persistence.size | quote }}
+  volumeMode: Filesystem
