@@ -39,7 +39,7 @@ spec:
         volumeMounts:
         - name: postgresql-data
           mountPath: /var/lib/postgresql/data
-      volumes:
-      - name: postgresql-data
-        persistentVolumeClaim:
-          claimName: {{ include "my-postgres.pvcName" . | lower }}                          /
+      # volumes:
+      # - name: postgresql-data
+      #   persistentVolumeClaim:
+      #     claimName: {{ include "my-postgres.pvcName" . | lower }}                          /
