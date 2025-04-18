@@ -52,7 +52,7 @@ async def generate_random_message():
 @router.message(Command("push"))
 async def cmd_push(message: Message):
     try:        
-        for i in range(100):
+        for i in range(50):
             message_text = await generate_random_message()
             pool = await create_pool()
             # Выполняем вставку
