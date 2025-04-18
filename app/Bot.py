@@ -43,7 +43,7 @@ async def create_pool():
         max_inactive_connection_lifetime=20
     )
     return pool
-
+#
 async def generate_random_message():
     random_text = ''.join(random.choices(string.ascii_letters + string.digits, k=20))
     return random_text
