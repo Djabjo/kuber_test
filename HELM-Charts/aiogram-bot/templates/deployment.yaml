@@ -17,14 +17,12 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.imagebot.repository }}:{{ .Values.imagebot.tag }}"
-        
           env:
           - name: TELEGRAM_BOT_TOKEN
             valueFrom:
               secretKeyRef:
                   name: {{ .Values.bot.SecretTOKEN }} 
                   key: telegram-token
-          
           - name: POSTGRES_DB
             valueFrom:
               secretKeyRef:
