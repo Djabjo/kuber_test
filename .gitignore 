@@ -1,5 +1,4 @@
 /conf.py
-
 .env
 .venv
 env/
@@ -7,8 +6,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-
-__pycache__/
+__pycache__z
 **/__pycache__/
 .conda/
 .vscode/
