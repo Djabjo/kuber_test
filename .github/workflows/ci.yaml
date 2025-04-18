@@ -33,10 +33,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: app/
-          platforms: |
-            linux/amd64
-            linux/arm64
-            linux/armv7l 
+          platforms: linux/arm64,linux/arm/v7 
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:0.1.1
