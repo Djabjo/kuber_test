@@ -9,7 +9,7 @@ postgresql:
     secretName: "postgres-secret"
   persistence:
     enabled: true
-    size: 2Gi
+    size: 1Gi
     storageClass: "local-path"
   service:
     type: ClusterIP
