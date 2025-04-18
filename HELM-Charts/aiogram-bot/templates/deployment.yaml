@@ -42,7 +42,8 @@ spec:
               secretKeyRef:
                   name: {{ .Values.bot.SecretPSQL }} 
                   key: POSTGRES_USER
-      nodeSelector: sleve 
+      nodeSelector:
+        app: sleve 
 {{- with .Values.nodeSelector }}
 nodeSelector:
   {{- toYaml . | nindent 4 }}

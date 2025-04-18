@@ -43,4 +43,5 @@ spec:
       - name: postgresql-data
         persistentVolumeClaim:
           claimName: {{ include "my-postgres.fullname" . | lower | trunc 63 | trimSuffix "-" }}-pvc
-      nodeSelector: sleve
+      nodeSelector:
+        app: sleve
