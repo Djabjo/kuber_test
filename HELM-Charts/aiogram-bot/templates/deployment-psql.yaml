@@ -42,4 +42,4 @@ spec:
       volumes:
       - name: postgresql-data
         persistentVolumeClaim:
-          claimName: botic-postgres-pvc
+          claimName: {{ include "my-postgres.fullname" . | lower | trunc 63 | trimSuffix "-" }}pvc
