@@ -9,6 +9,6 @@ spec:
     - ReadWriteOnce
   storageClassName: {{ .Values.postgresql.persistence.storageClass | quote }}
   resources:
-    requests:    storageClass
+    requests:
       storage: {{ .Values.postgresql.persistence.size | quote }}
   volumeMode: Filesystem
