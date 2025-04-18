@@ -47,4 +47,4 @@ spec:
       volumes:
       - name: postgresql-data
         persistentVolumeClaim:
-          claimName: botic-postgres-pvc                         /
+          claimName: botic-postgres-pvc                      
