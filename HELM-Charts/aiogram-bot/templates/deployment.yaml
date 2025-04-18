@@ -17,6 +17,7 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.imagebot.repository }}:{{ .Values.imagebot.tag }}"
+        
           env:
           - name: TELEGRAM_BOT_TOKEN
             valueFrom:
@@ -41,6 +42,7 @@ spec:
               secretKeyRef:
                   name: {{ .Values.bot.SecretPSQL }} 
                   key: POSTGRES_USER
+      nodeSelector: sleve 
 {{- with .Values.nodeSelector }}
 nodeSelector:
   {{- toYaml . | nindent 4 }}
